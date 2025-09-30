@@ -1,10 +1,11 @@
-package com.crm.educational_crm_backend.controller;
+package com.crm.educational_crm_backend.controller.user;
 
-import com.crm.educational_crm_backend.dto.UserResponse;
-import com.crm.educational_crm_backend.entity.Role;
-import com.crm.educational_crm_backend.entity.User;
-import com.crm.educational_crm_backend.exception.UserNotFoundException;
-import com.crm.educational_crm_backend.service.UserService;
+import com.crm.educational_crm_backend.dto.user.UserResponse;
+import com.crm.educational_crm_backend.entity.enums.Role;
+import com.crm.educational_crm_backend.entity.user.User;
+import com.crm.educational_crm_backend.exception.user.UserNotFoundException;
+import com.crm.educational_crm_backend.service.user.UserService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

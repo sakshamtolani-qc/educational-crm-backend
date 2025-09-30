@@ -1,4 +1,4 @@
-package com.crm.educational_crm_backend.dto;
+package com.crm.educational_crm_backend.dto.user;
 
 import java.util.UUID;
 

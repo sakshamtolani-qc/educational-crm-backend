@@ -1,7 +1,8 @@
-package com.crm.educational_crm_backend.security;
+package com.crm.educational_crm_backend.security.customUser;
 
-import com.crm.educational_crm_backend.entity.User;
-import com.crm.educational_crm_backend.repository.UserRepository;
+import com.crm.educational_crm_backend.entity.user.User;
+import com.crm.educational_crm_backend.repository.user.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;

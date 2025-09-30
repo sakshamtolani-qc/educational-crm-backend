@@ -1,9 +1,10 @@
-package com.crm.educational_crm_backend.security;
+package com.crm.educational_crm_backend.security.customUser;
 
-import com.crm.educational_crm_backend.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.crm.educational_crm_backend.entity.user.User;
 
 import java.util.Collection;
 import java.util.Collections;

@@ -1,12 +1,13 @@
-package com.crm.educational_crm_backend.controller;
+package com.crm.educational_crm_backend.controller.auth;
 
-import com.crm.educational_crm_backend.dto.AuthResponse;
-import com.crm.educational_crm_backend.dto.LoginRequest;
-import com.crm.educational_crm_backend.dto.RegisterRequest;
-import com.crm.educational_crm_backend.dto.UserResponse;
-import com.crm.educational_crm_backend.entity.Role;
-import com.crm.educational_crm_backend.entity.User;
-import com.crm.educational_crm_backend.service.AuthService;
+import com.crm.educational_crm_backend.dto.auth.AuthResponse;
+import com.crm.educational_crm_backend.dto.auth.LoginRequest;
+import com.crm.educational_crm_backend.dto.auth.RegisterRequest;
+import com.crm.educational_crm_backend.dto.user.UserResponse;
+import com.crm.educational_crm_backend.entity.enums.Role;
+import com.crm.educational_crm_backend.entity.user.User;
+import com.crm.educational_crm_backend.service.auth.AuthService;
+
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

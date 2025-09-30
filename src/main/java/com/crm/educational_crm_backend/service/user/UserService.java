@@ -1,9 +1,10 @@
-package com.crm.educational_crm_backend.service;
+package com.crm.educational_crm_backend.service.user;
 
-import com.crm.educational_crm_backend.dto.UserResponse;
-import com.crm.educational_crm_backend.entity.User;
-import com.crm.educational_crm_backend.exception.UserNotFoundException;
-import com.crm.educational_crm_backend.repository.UserRepository;
+import com.crm.educational_crm_backend.dto.user.UserResponse;
+import com.crm.educational_crm_backend.entity.user.User;
+import com.crm.educational_crm_backend.exception.user.UserNotFoundException;
+import com.crm.educational_crm_backend.repository.user.UserRepository;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

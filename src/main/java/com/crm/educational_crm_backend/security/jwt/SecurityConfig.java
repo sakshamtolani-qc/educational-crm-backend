@@ -1,4 +1,4 @@
-package com.crm.educational_crm_backend.security;
+package com.crm.educational_crm_backend.security.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

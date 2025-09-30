@@ -1,5 +1,6 @@
-package com.crm.educational_crm_backend.entity;
+package com.crm.educational_crm_backend.entity.user;
 
+import com.crm.educational_crm_backend.entity.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -81,7 +82,7 @@ public class User {
     public String getGender() { return gender; }
     public void setGender(String gender) { this.gender = gender; }
 
-    public Role getRole() { return role; }
+    public com.crm.educational_crm_backend.entity.enums.Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
 
 }

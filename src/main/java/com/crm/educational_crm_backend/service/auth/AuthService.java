@@ -1,11 +1,12 @@
-package com.crm.educational_crm_backend.service;
+package com.crm.educational_crm_backend.service.auth;
 
-import com.crm.educational_crm_backend.dto.AuthResponse;
-import com.crm.educational_crm_backend.entity.Role;
-import com.crm.educational_crm_backend.entity.User;
-import com.crm.educational_crm_backend.exception.EmailAlreadyExistsException;
-import com.crm.educational_crm_backend.repository.UserRepository;
-import com.crm.educational_crm_backend.security.JwtTokenProvider;
+import com.crm.educational_crm_backend.dto.auth.AuthResponse;
+import com.crm.educational_crm_backend.entity.enums.Role;
+import com.crm.educational_crm_backend.entity.user.User;
+import com.crm.educational_crm_backend.exception.user.EmailAlreadyExistsException;
+import com.crm.educational_crm_backend.repository.user.UserRepository;
+import com.crm.educational_crm_backend.security.jwt.JwtTokenProvider;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,8 +61,8 @@ public class AuthService {
     token,
     user.getUsername(),
     user.getRole().name(),
-    user.getId()  // pass UUID here
-));
+    user.getId()  
+    ));
 
         }
 

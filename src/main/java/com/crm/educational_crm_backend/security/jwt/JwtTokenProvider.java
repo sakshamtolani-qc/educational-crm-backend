@@ -1,4 +1,4 @@
-package com.crm.educational_crm_backend.security;
+package com.crm.educational_crm_backend.security.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

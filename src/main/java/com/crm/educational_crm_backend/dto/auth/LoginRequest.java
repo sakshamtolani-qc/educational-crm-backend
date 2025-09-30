@@ -1,4 +1,4 @@
-package com.crm.educational_crm_backend.dto;
+package com.crm.educational_crm_backend.dto.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
