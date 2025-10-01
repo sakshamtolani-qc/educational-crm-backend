@@ -4,6 +4,7 @@ import com.crm.educational_crm_backend.dto.course.CourseRequest;
 import com.crm.educational_crm_backend.dto.course.CourseResponse;
 import com.crm.educational_crm_backend.service.course.CourseService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,25 +20,29 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    // Create course
+    // Create course - Admin only
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<CourseResponse> createCourse(@RequestBody CourseRequest request) {
         return ResponseEntity.ok(courseService.createCourse(request));
     }
 
-    // Get all courses
+    // Get all courses - Authenticated
+    @PreAuthorize("isAuthenticated()")
     @GetMapping
     public ResponseEntity<List<CourseResponse>> getAllCourses() {
         return ResponseEntity.ok(courseService.getAllCourses());
     }
 
-    // Get course by ID
+    // Get course by ID - Authenticated
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}")
     public ResponseEntity<CourseResponse> getCourseById(@PathVariable UUID id) {
         return ResponseEntity.ok(courseService.getCourseById(id));
     }
 
-    // Update course
+    // Update course - Admin only
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<CourseResponse> updateCourse(
             @PathVariable UUID id,
@@ -46,7 +51,8 @@ public class CourseController {
         return ResponseEntity.ok(courseService.updateCourse(id, request));
     }
 
-    // Delete course
+    // Delete course - Admin only
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCourse(@PathVariable UUID id) {
         courseService.deleteCourse(id);
