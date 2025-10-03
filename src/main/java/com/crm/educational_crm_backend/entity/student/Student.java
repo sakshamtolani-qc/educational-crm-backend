@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.UUID;
-
 @Entity
 @Table(name = "students")
 @Data
@@ -42,11 +41,18 @@ public class Student {
     @Column(name = "enrollment_date")
     private LocalDate enrollmentDate;
 
+    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDate createdAt = LocalDate.now();
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDate.now();
+        updatedAt = LocalDate.now();
+    }
 
     @PreUpdate
     public void preUpdate() {
