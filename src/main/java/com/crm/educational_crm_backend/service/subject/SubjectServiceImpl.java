@@ -37,12 +37,13 @@ public class SubjectServiceImpl implements SubjectService {
         Faculty faculty = facultyRepository.findById(request.getFacultyId())
                 .orElseThrow(() -> new FacultyNotFoundException("Faculty not found"));
 
-        Subject subject = new Subject();
-        subject.setCourse(course);
-        subject.setFaculty(faculty);
-        subject.setName(request.getName());
-        subject.setCode(request.getCode());
-        subject.setCredits(request.getCredits());
+        Subject subject = Subject.builder()
+                .course(course)
+                .faculty(faculty)
+                .name(request.getName())
+                .code(request.getCode())
+                .credits(request.getCredits())
+                .build();
 
         Subject saved = subjectRepository.save(subject);
         return toResponse(saved);

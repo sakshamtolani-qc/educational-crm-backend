@@ -3,11 +3,20 @@ package com.crm.educational_crm_backend.entity.student;
 import com.crm.educational_crm_backend.entity.user.User;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
 @Table(name = "students")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Student {
 
     @Id
@@ -42,70 +51,5 @@ public class Student {
     @PreUpdate
     public void preUpdate() {
         updatedAt = LocalDate.now();
-    }
-
-    // Getters and Setters
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getEnrollmentNo() {
-        return enrollmentNo;
-    }
-
-    public void setEnrollmentNo(String enrollmentNo) {
-        this.enrollmentNo = enrollmentNo;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public LocalDate getAdmissionDate() {
-        return admissionDate;
-    }
-
-    public void setAdmissionDate(LocalDate admissionDate) {
-        this.admissionDate = admissionDate;
-    }
-
-    public LocalDate getEnrollmentDate() {
-        return enrollmentDate;
-    }
-
-    public void setEnrollmentDate(LocalDate enrollmentDate) {
-        this.enrollmentDate = enrollmentDate;
-    }
-
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDate getUpdatedAt() {
-        return updatedAt;
     }
 }

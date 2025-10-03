@@ -2,6 +2,16 @@ package com.crm.educational_crm_backend.dto.attendance;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AttendanceResponse {
     private UUID id;
     private UUID studentId;
@@ -9,29 +19,5 @@ public class AttendanceResponse {
     private LocalDate attendanceDate;
     private String status;
 
-    public AttendanceResponse() {}
-
-    public AttendanceResponse(UUID id, UUID studentId, UUID subjectId, LocalDate attendanceDate, String status) {
-        this.id = id;
-        this.studentId = studentId;
-        this.subjectId = subjectId;
-        this.attendanceDate = attendanceDate;
-        this.status = status;
-    }
-
-    // Getters & Setters
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-
-    public UUID getStudentId() { return studentId; }
-    public void setStudentId(UUID studentId) { this.studentId = studentId; }
-
-    public UUID getSubjectId() { return subjectId; }
-    public void setSubjectId(UUID subjectId) { this.subjectId = subjectId; }
-
-    public LocalDate getAttendanceDate() { return attendanceDate; }
-    public void setAttendanceDate(LocalDate attendanceDate) { this.attendanceDate = attendanceDate; }
-
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    
 }

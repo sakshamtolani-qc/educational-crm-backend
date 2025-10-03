@@ -21,12 +21,12 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public AttendanceResponse markAttendance(AttendanceRequest request) {
-        Attendance attendance = new Attendance(
-                request.getStudentId(),
-                request.getSubjectId(),
-                request.getAttendanceDate(),
-                request.getStatus()
-        );
+        Attendance attendance = Attendance.builder()
+        .studentId(request.getStudentId())
+        .subjectId(request.getSubjectId())
+        .attendanceDate(request.getAttendanceDate())
+        .status(request.getStatus())
+        .build();
         Attendance saved = attendanceRepository.save(attendance);
         return new AttendanceResponse(
                 saved.getId(),

@@ -4,12 +4,20 @@ import com.crm.educational_crm_backend.entity.course.Course;
 import com.crm.educational_crm_backend.entity.enums.EnrollmentStatus;
 import com.crm.educational_crm_backend.entity.student.Student;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "enrollments")
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Enrollment {
 
     @Id
@@ -55,25 +63,4 @@ public class Enrollment {
         updatedAt = LocalDateTime.now();
     }
 
-    // Getters & Setters
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-
-    public Student getStudent() { return student; }
-    public void setStudent(Student student) { this.student = student; }
-
-    public Course getCourse() { return course; }
-    public void setCourse(Course course) { this.course = course; }
-
-    public LocalDateTime getEnrollmentDate() { return enrollmentDate; }
-    public void setEnrollmentDate(LocalDateTime enrollmentDate) { this.enrollmentDate = enrollmentDate; }
-
-    public EnrollmentStatus getStatus() { return status; }
-    public void setStatus(EnrollmentStatus status) { this.status = status; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-
-    public LocalDateTime getUpdatedAt() { return updatedAt; }
-    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 }

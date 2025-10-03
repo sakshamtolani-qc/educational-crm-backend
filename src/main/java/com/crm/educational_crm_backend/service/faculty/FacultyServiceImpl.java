@@ -23,7 +23,6 @@ public class FacultyServiceImpl implements FacultyService {
     @Autowired
     private UserRepository userRepository;
 
-    // Convert Faculty entity to FacultyResponse DTO
     private FacultyResponse mapToResponse(Faculty faculty) {
         return new FacultyResponse(
                 faculty.getId(),
@@ -40,23 +39,22 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public FacultyResponse createFaculty(FacultyRequest request) {
-        // Check if user exists
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Optional: check if faculty already exists for this user
         if(facultyRepository.existsByUserId(user.getId())) {
             throw new RuntimeException("Faculty already exists for this user");
         }
 
-        Faculty faculty = new Faculty();
-        faculty.setUser(user);
-        faculty.setDepartment(request.getDepartment());
-        faculty.setSpecialization(request.getSpecialization());
-        faculty.setHireDate(request.getHireDate());
-        faculty.setDesignation(request.getDesignation());
-        faculty.setCreatedAt(LocalDateTime.now());
-        faculty.setUpdatedAt(LocalDateTime.now());
+        Faculty faculty = Faculty.builder()
+                .user(user)
+                .department(request.getDepartment())
+                .specialization(request.getSpecialization())
+                .hireDate(request.getHireDate())
+                .designation(request.getDesignation())
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build();
 
         Faculty savedFaculty = facultyRepository.save(faculty);
 

@@ -1,12 +1,21 @@
 package com.crm.educational_crm_backend.entity.subject;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import com.crm.educational_crm_backend.entity.course.Course;
 import com.crm.educational_crm_backend.entity.faculty.Faculty;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "subjects")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Subject {
 
     @Id
@@ -48,19 +57,4 @@ public class Subject {
         updatedAt = LocalDateTime.now();
     }
 
-    // Getters & Setters
-    public java.util.UUID getId() { return id; }
-    public void setId(java.util.UUID id) { this.id = id; }
-    public Course getCourse() { return course; }
-    public void setCourse(Course course) { this.course = course; }
-    public Faculty getFaculty() { return faculty; }
-    public void setFaculty(Faculty faculty) { this.faculty = faculty; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getCode() { return code; }
-    public void setCode(String code) { this.code = code; }
-    public Integer getCredits() { return credits; }
-    public void setCredits(Integer credits) { this.credits = credits; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public LocalDateTime getUpdatedAt() { return updatedAt; }
 }

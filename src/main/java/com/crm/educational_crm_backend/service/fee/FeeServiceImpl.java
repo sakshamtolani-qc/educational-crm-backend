@@ -22,12 +22,12 @@ public class FeeServiceImpl implements FeeService {
 
     @Override
     public FeeResponse createFee(FeeRequest feeRequest) {
-        Fee fee = new Fee();
-        fee.setStudentId(feeRequest.getStudentId());
-        fee.setCourseId(feeRequest.getCourseId());
-        fee.setAmount(feeRequest.getAmount());
-        fee.setDueDate(feeRequest.getDueDate());
-        // status and createdAt are set automatically
+        Fee fee = Fee.builder()
+                .studentId(feeRequest.getStudentId())
+                .courseId(feeRequest.getCourseId())
+                .amount(feeRequest.getAmount())
+                .dueDate(feeRequest.getDueDate())
+                .build();
         Fee saved = feeRepository.save(fee);
         return mapToResponse(saved);
     }
@@ -43,11 +43,8 @@ public class FeeServiceImpl implements FeeService {
         Fee fee = feeRepository.findById(feeId)
                 .orElseThrow(() -> new FeeNotFoundException(feeId));
 
-        // Check if fee is already paid
         if ("Paid".equalsIgnoreCase(fee.getStatus())) {
-            // Option 1: Throw error
             throw new RuntimeException("Fee already paid on: " + fee.getPaidDate());
-
         }
 
         fee.setStatus("Paid");
@@ -57,7 +54,6 @@ public class FeeServiceImpl implements FeeService {
 
         return mapToResponse(fee);
     }
-
 
     @Override
     public FeeResponse getPaymentDetails(UUID feeId) {

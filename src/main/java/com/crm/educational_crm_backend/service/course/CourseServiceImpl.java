@@ -22,15 +22,18 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseResponse createCourse(CourseRequest request) {
-        Course course = new Course();
-        course.setName(request.getName());
-        course.setCode(request.getCode());
-        course.setDescription(request.getDescription());
-        course.setCredits(request.getCredits());
-        course.setDurationMonths(request.getDurationMonths());
-        Course saved = courseRepository.save(course);
-        return toResponse(saved);
+    Course course = Course.builder()
+            .name(request.getName())
+            .code(request.getCode())
+            .description(request.getDescription())
+            .credits(request.getCredits())
+            .durationMonths(request.getDurationMonths())
+            .build();
+
+    Course saved = courseRepository.save(course);
+    return toResponse(saved);
     }
+
 
     @Override
     public List<CourseResponse> getAllCourses() {

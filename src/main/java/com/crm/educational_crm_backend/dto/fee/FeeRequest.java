@@ -4,7 +4,15 @@ import java.time.LocalDate;
 import java.util.UUID;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class FeeRequest {
 
     @NotNull(message = "Student ID is required")
@@ -20,16 +28,4 @@ public class FeeRequest {
     @NotNull(message = "Due date is required")
     private LocalDate dueDate;
 
-    // Getters & Setters
-    public UUID getStudentId() { return studentId; }
-    public void setStudentId(UUID studentId) { this.studentId = studentId; }
-
-    public UUID getCourseId() { return courseId; }
-    public void setCourseId(UUID courseId) { this.courseId = courseId; }
-
-    public Double getAmount() { return amount; }
-    public void setAmount(Double amount) { this.amount = amount; }
-
-    public LocalDate getDueDate() { return dueDate; }
-    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
 }

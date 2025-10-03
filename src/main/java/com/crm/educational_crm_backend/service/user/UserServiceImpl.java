@@ -39,17 +39,19 @@ public class UserServiceImpl implements UserService {
         User existing = userRepository.findById(user.getId())
                 .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + user.getId()));
 
-        existing.setUsername(user.getUsername());
-        existing.setFirstName(user.getFirstName());
-        existing.setLastName(user.getLastName());
-        existing.setEmail(user.getEmail());
-        existing.setPhone(user.getPhone());
-        existing.setGender(user.getGender());
-        existing.setRole(user.getRole());
-
-        if (user.getPassword() != null && !user.getPassword().isBlank()) {
-            existing.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
+        existing = User.builder()
+                .id(existing.getId())
+                .username(user.getUsername())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .gender(user.getGender())
+                .role(user.getRole())
+                .password(user.getPassword() != null && !user.getPassword().isBlank() 
+                          ? passwordEncoder.encode(user.getPassword()) 
+                          : existing.getPassword())
+                .build();
 
         return userRepository.save(existing);
     }

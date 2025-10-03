@@ -27,43 +27,31 @@ public class AuthService {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    /**
-     * Register a new user with default STUDENT role.
-     * Throws EmailAlreadyExistsException if email is already registered.
-     */
     public User register(User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new EmailAlreadyExistsException("Email is already registered: " + user.getEmail());
         }
 
-        // Hash the password before storing
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        // Assign default role
         user.setRole(Role.STUDENT);
 
         return userRepository.save(user);
     }
 
-    /**
-     * Login user and generate JWT if credentials are valid.
-     */
     public Optional<AuthResponse> login(String email, String rawPassword) {
         Optional<User> userOpt = userRepository.findByEmail(email);
 
         if (userOpt.isPresent() && passwordEncoder.matches(rawPassword, userOpt.get().getPassword())) {
             User user = userOpt.get();
-
-            // Generate JWT using user email, ID, and role
             String token = jwtTokenProvider.generateToken(user.getEmail(), user.getId(), user.getRole().name());
 
-            return Optional.of(new AuthResponse(
-    token,
-    user.getUsername(),
-    user.getRole().name(),
-    user.getId()  
-    ));
-
+            return Optional.of(AuthResponse.builder()
+                    .token(token)
+                    .username(user.getUsername())
+                    .role(user.getRole().name())
+                    .id(user.getId())
+                    .build()
+            );
         }
 
         return Optional.empty();

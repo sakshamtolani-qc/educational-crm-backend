@@ -30,13 +30,14 @@ public class StudentServiceImpl implements StudentService {
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + request.getUserId()));
 
-        Student student = new Student();
-        student.setUser(user);
-        student.setEnrollmentNo(request.getEnrollmentNo());
-        student.setDob(request.getDob());
-        student.setAddress(request.getAddress());
-        student.setAdmissionDate(request.getAdmissionDate());
-        student.setEnrollmentDate(request.getEnrollmentDate());
+        Student student = Student.builder()
+                .user(user)
+                .enrollmentNo(request.getEnrollmentNo())
+                .dob(request.getDob())
+                .address(request.getAddress())
+                .admissionDate(request.getAdmissionDate())
+                .enrollmentDate(request.getEnrollmentDate())
+                .build();
 
         return studentRepository.save(student);
     }
@@ -62,7 +63,6 @@ public class StudentServiceImpl implements StudentService {
         existing.setAdmissionDate(request.getAdmissionDate());
         existing.setEnrollmentDate(request.getEnrollmentDate());
 
-        // Optional: Update linked user info if needed
         if (request.getUserId() != null) {
             User user = userRepository.findById(request.getUserId())
                     .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + request.getUserId()));
